@@ -63,7 +63,8 @@ _italic text_
 ```
 ## Images
 - Inline image link: ![Alt text](URL)
-- 
+  
+![example](assets/image_example.png)
 
 ```markdown
 ![GitHub Logo](https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png)
