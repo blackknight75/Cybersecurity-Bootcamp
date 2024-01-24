@@ -18,7 +18,7 @@
 ## Grep 'logrotate' Output Example
 
 ```shell
-sudo logrotate -vf /etc/logrotate.conf 2>&1 | grep cron```
+sudo logrotate -vf /etc/logrotate.conf 2>&1 | grep cron
 
 2 = The standard error (stderr) output from the logrotate command.
 >& = Redirect one stream type to another.
