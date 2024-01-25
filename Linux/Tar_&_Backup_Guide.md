@@ -71,8 +71,23 @@ The `-W` option in the tar command for Linux is used for verifying an archive af
 This command creates a new tar archive with verbose output and uses an incremental approach, only archiving changes since the last snapshot.
 
 ```sh
-tar cvvf --listed-incremental=/path/to/snapshot.file archive_name.tar /path/to/directory
+tar --create --verbose --listed-incremental=/path/to/snapshot.snar --level=0 --file=backup.tar /path/to/directory
 ```
+### In this command:
+
+`--create` or `-c`: Create a new archive.  
+  
+`--verbose` or `-v`: Verbose mode, to list files processed.  
+  
+`--listed-incremental=/path/to/snapshot.snar`: Specifies the snapshot file to use for incremental backup.  
+  
+`--level=0`: Indicates a full backup.  
+  
+`--file=backup.tar` or `-f backup.tar`: The name of the archive file.  
+  
+`/path/to/directory`: The directory to back up.  
+  
+This command creates a full backup of the specified directory, recording the state of each file in the snapshot file. For subsequent incremental backups, you would use the same command without `--level=0`, which would then only back up files that have changed since the last backup recorded in the snapshot file.
 
 ## Viewing a Tar File Contents
 
