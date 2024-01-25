@@ -70,52 +70,73 @@ The `-W` option in the tar command for Linux is used for verifying an archive af
 
 This command creates a new tar archive with verbose output and uses an incremental approach, only archiving changes since the last snapshot.
 
-sh
-Copy code
+```sh
 tar cvvf --listed-incremental=/path/to/snapshot.file archive_name.tar /path/to/directory
-Viewing a Tar File Contents
-List the contents of an archive with verbose output, which is useful to verify the contents of a tarball.
+```
 
-sh
-Copy code
+## Viewing a Tar File Contents
+
+- List the contents of an archive with verbose output, which is useful to verify the contents of a tarball.
+
+```sh
 tar tvf archive_name.tar
-Creating Backup Checkpoints
-Create an archive with checkpoints, allowing you to monitor the progress and ensure that it's being created as expected.
+```
 
-sh
-Copy code
+## Creating Backup Checkpoints
+
+- Create an archive with checkpoints, allowing you to monitor the progress and ensure that it's being created as expected.
+
+```sh
 tar cvvf --checkpoint --checkpoint-action=echo=Checkpoint\ reached archive_name.tar /path/to/directory
-Compressing and Restoring
-Compressing a Tar File with Gzip
-Create and compress an archive with gzip, which reduces the size of the archive.
+```
+  
+### Compressing and Restoring
+---
+## Compressing a Tar File with Gzip
 
-sh
-Copy code
+- Create and compress an archive with gzip, which reduces the size of the archive.
+
+```sh
 tar cvzf archive_name.tar.gz /path/to/directory
-Restoring from a Single Tar File
-Extract all files from a gzip-compressed tarball.
+```
 
-sh
-Copy code
+## Restoring from a Single Tar File
+
+- Extract all files from a gzip-compressed tarball.
+
+```sh
 tar xvzf archive_name.tar.gz
-Restoring from Incremental Files
-Restore files from an incremental archive, which is a tarball that contains only the files that changed since the last full backup.
+```
 
-sh
-Copy code
+## Restoring from Incremental Files
+
+- Restore files from an incremental archive, which is a tarball that contains only the files that changed since the last full backup.
+
+```sh
 tar xvzf archive_name.tar.gz --listed-incremental=/path/to/snapshot.file
-Monitoring Disk Space While Creating Tar Files
-Note: tar does not have a built-in option for monitoring disk space. You can use external commands like df for this purpose.
+```
 
-However, here is how you might create checkpoints and display the remaining disk space using a shell command with --checkpoint-action.
+## Monitoring Disk Space While Creating Tar Files
 
-sh
-Copy code
+- Note: tar does not have a built-in option for monitoring disk space. You can use external commands like df for this purpose.
+
+However, here is how you might create checkpoints and display the remaining disk space using a shell command with `--checkpoint-action`.
+
+```sh
 tar cvvf --checkpoint --checkpoint-action=exec=sh -c 'df -h; sleep 1;' archive_name.tar /path/to/directory
+```
+
 This command will execute df -h at each checkpoint to display the remaining disk space on the host system.
 
-Copy code
+### In this command:
 
+`c` is for creating an archive.  
+  
+`vvf` is for verbose output with the filename of the archive.  
+  
+`--checkpoint` instructs tar to create checkpoints at regular intervals.  
+  
+`--checkpoint-action=exec=sh -c 'df -h; sleep 1;'` specifies the action to be executed at each checkpoint. Here, it executes the df -h command to display disk usage in human-readable format and then pauses for 1 second (sleep 1) before proceeding. This action provides an opportunity to monitor the disk space as the archive is being created.
 
 
 
