@@ -115,7 +115,7 @@ tar cvvWf --checkpoint --checkpoint-action=echo=Checkpoint\ reached archive_name
 tar cvzWf archive_name.tar.gz /path/to/directory
 ```
 
-## Exclude Files In Tar
+## Exclude Files With Tar
 - To create a .tar file while excluding certain files or directories, you can use the tar command with the --exclude option. This option allows you to specify files or directories that should not be included in the archive.
 
 ```sh
