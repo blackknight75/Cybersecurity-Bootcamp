@@ -116,7 +116,7 @@ tar cvzWf archive_name.tar.gz /path/to/directory
 ```
 
 ## Exclude Files With Tar
-- To create a .tar file while excluding certain files or directories, you can use the tar command with the --exclude option. This option allows you to specify files or directories that should not be included in the archive.
+- To create a `.tar` file while excluding certain files or directories, you can use the tar command with the `--exclude` option. This option allows you to specify files or directories that should not be included in the archive.
 
 ```sh
 tar -cvvWf archive_name.tar --exclude='file_or_directory_to_exclude' directory_to_tar
@@ -189,7 +189,7 @@ tar -cvf ../myproject.tar --exclude='subdir/file.txt' .
 ### Key Takeaway
 The path you provide to `--exclude` is always relative to the "root" of what you are archiving, not your current file system location. In both examples, `subdir/file.txt` is correct because, relative to the root of what we're archiving, `myproject`, that is the path to the file.
 
-### `exclude` With Absolute Path
+### Exclude With Absolute Path
 
 Using absolute paths with the `--exclude` option in the `tar` command may be safer and more straightforward, especially in complex scripts or when dealing with intricate directory structures. Absolute paths reduce the ambiguity that might arise from relative path interpretations and make the command more predictable, which is particularly beneficial in automated scripts or environments where the current working directory might vary.
   
