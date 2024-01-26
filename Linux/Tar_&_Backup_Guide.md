@@ -142,7 +142,7 @@ tar -cvvWf archive_name.tar --exclude='file1' --exclude='directory1' directory_t
 
 - For example, to create a .tar archive of a directory named mydir, excluding a file named file.txt and a directory named dir, the command would be:
 ```sh
-tar -cvf mydir.tar --exclude='file.txt' --exclude='dir' mydir
+tar -cvvWf mydir.tar --exclude='file.txt' --exclude='dir' mydir
 ```
 *This command will create a tar archive named mydir.tar containing everything in mydir except for file.txt and the directory dir.*
 
