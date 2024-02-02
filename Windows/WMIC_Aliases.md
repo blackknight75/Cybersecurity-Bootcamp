@@ -2,10 +2,6 @@
 
 In WMIC (Windows Management Instrumentation Command-line), aliases are used as shorthand to reference WMI classes that represent various system components and data. These aliases allow users to perform operations without needing to know the underlying WMI class names. Below is a comprehensive list of common aliases available in WMIC, which can be used to query or manipulate different aspects of the Windows operating system:
 
-# WMIC Aliases
-
-WMIC (Windows Management Instrumentation Command-line) provides aliases as shorthand to access and manage various components of the Windows operating system. Below is a list of common WMIC aliases:
-
 - **`ALIAS`**: Lists information about WMIC aliases.
 - **`BASEBOARD`**: Provides information related to the motherboard.
 - **`BIOS`**: Gives details about the system BIOS.
