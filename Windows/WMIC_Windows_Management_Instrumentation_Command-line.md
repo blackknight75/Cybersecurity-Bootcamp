@@ -8,6 +8,7 @@ wmic [context] [alias] [where clause] [verb clause]
 
 - **[context]:** This is optional and specifies the WMIC environment settings, such as the output format.
 - **[alias]:** Represents the WMI class you're interacting with, such as `process`, `service`, or `product`. This part of the syntax specifies what aspect of the system you're querying or configuring.
+  > For a comprehensive list of aliases click here: [WMIC Alias Guide](WMIC_Aliases.md)
 - **[where clause]:** This is optional and allows you to filter the objects affected by your command based on their properties, such as `name='example.exe'`. It narrows down the scope of the command to objects that match the criteria.
 - **[verb clause]:** Specifies the action to be performed, such as `list`, `get`, `call`, or `delete`. It can also include additional options or arguments required by the action.
 
