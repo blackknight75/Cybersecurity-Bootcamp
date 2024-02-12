@@ -67,7 +67,7 @@ _italic text_
 ![example](assets/image_example.png)
 
 ```markdown
-![GitHub Logo](https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png)
+![example](assets/image_example.png)
 ```
 ## Code
 - `Inline code`: Use single backticks.
