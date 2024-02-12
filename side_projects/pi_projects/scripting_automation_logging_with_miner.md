@@ -6,7 +6,7 @@ Develop a Monero mining application with an accompanying script that ensures its
 
 *Please note that the content provided here is for informational purposes only and should not be construed as financial, investment, tax, legal, or other types of advice. Cryptocurrency investments carry a high level of risk and are subject to market volatility. Prices can fluctuate significantly in a very short period of time, potentially leading to substantial losses. Before making any investment decisions, it is crucial to conduct your own thorough research and consider your financial situation, investment objectives, and risk tolerance. It may also be beneficial to consult with a qualified financial advisor to ensure that your investment strategies are aligned with your financial goals and risk profile. Investing in cryptocurrencies is not suitable for all investors, and there is no guarantee of return. Past performance is not indicative of future results. You should only invest money that you are prepared to lose. By making any investment, you acknowledge and accept the inherent risks, including the potential loss of principal.
 
-### Watch Chucks video to setup the miner. 
+### Watch Chuck's video to setup the miner. 
 https://www.youtube.com/watch?v=hHtGN_JzoP8
 
 ### Check Miner Process Name
