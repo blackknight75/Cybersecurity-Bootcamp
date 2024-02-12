@@ -1,6 +1,6 @@
-### Objective
+## Objective
 
-Develop a Monero mining application with an accompanying script that ensures its continuous operation. Using what we have learned in this bootcamp so far, the script will check the miner's status, restart it if necessary, log activities for monitoring purposes and rotating logs to reduce disk usage. Additionally, the script will be scheduled to run at regular intervals using Cron.
+Develop a Monero mining application with an accompanying script that ensures its continuous operation. Using what we have learned in this bootcamp so far, the script will check the miner's status, restart it if necessary, and log activities for monitoring purposes. Additionally, the script will be scheduled to run at regular intervals using Cron and rotating logs to reduce disk usage.
 
 ##### Disclaimer: Financial and Crypto Investment Risks
 
@@ -23,7 +23,7 @@ If you don't know the name of the process and xmrig doesn't work you can try lau
 top
 ```
 
- *process image
+![xmrig process](https://raw.githubusercontent.com/blackknight75/Cybersecurity-Bootcamp/main/side_projects/assets/xmrig_process.png)
 
 ```bash
 
@@ -209,6 +209,8 @@ cat miner_monitor_2024-02-12_20-30-01.log
 Mon 12 Feb 20:30:01 GMT 2024 Checking for xmrig process.
 Mon 12 Feb 20:30:01 GMT 2024 xmrig is not running. Starting xmrig...
 ```
+
+![miner logs](https://raw.githubusercontent.com/blackknight75/Cybersecurity-Bootcamp/main/side_projects/assets/miner_logs.png)
 
 ### BONUS: Rotate Your Logs With `logrotate`
 
