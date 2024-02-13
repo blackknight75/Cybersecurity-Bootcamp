@@ -11,7 +11,7 @@ https://www.youtube.com/watch?v=hHtGN_JzoP8
 
 ### Check Miner Process Name
 
-The process name should be `xmrig` and it should be located in the `home/user/xmrig/build` directory if you followed the instructions in the Chuck video. The process name for a Monero miner can vary depending on the specific mining software you are using. Monero mining can be performed using various miners, such as `XMRig`, `XMR-STAK`, `MinerGate`, among others. Each of these miners has its own executable and, consequently, its own process name when running. Here are some common examples:
+The process name should be `xmrig` and the executable for your start command should be located in the `home/user/xmrig/build` directory if you followed the instructions in the Chuck video. The process name for a Monero miner can vary depending on the specific mining software you are using. Monero mining can be performed using various miners, such as `XMRig`, `XMR-STAK`, `MinerGate`, among others. Each of these miners has its own executable and, consequently, its own process name when running. Here are some common examples:
 
 - **XMRig**: The process name is usually `xmrig`, unless it has been renamed or is running from a custom script.
 - **XMR-STAK**: The process name could be `xmr-stak`, `xmr-stak-rx`, or similar, depending on the version.
