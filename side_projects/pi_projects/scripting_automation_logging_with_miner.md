@@ -95,7 +95,7 @@ crontab -e
 
 Add a new line to the file to schedule your script:
 ```bash
-*/5 * * * * /path/to/monitor_miner.sh
+*/5 * * * * /home/user/xmrig/monitor_miner.sh
 ```
 
 This will run the script every 5 minutes. Adjust the path and timing as necessary.
