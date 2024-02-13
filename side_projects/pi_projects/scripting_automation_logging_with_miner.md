@@ -296,3 +296,79 @@ empty log files are not rotated, old logs are removed
 Logrotate is typically run by a cron job once a day. To ensure logrotate uses your configuration during its regular operation, no further action is required. The daily cron job for logrotate will automatically pick up your new configuration file and rotate the logs according to the rules you've specified.
 
 This setup will manage your mining log files automatically, keeping them compressed and purged based on the criteria you set, thus saving disk space and making log management more efficient.
+
+# Bonus #2 Add Discord Notifications
+
+To send notifications from a Bash script to Discord, you can use Discord Webhooks in a similar manner to Slack. Discord Webhooks are a simple way to post messages to channels in Discord from external programs. Here's how you can set this up:
+
+### Account Setup and Download
+
+> ### Download
+> *If you prefer not to install anything, you can access it through the web app.*  
+> https://discord.com/
+
+> ### Register for Account
+> https://discord.com/register
+
+### Create a Server
+Creating a server in Discord is a straightforward process that can be done within the Discord app or web interface. Here's how to create a new server:
+*On Desktop (Discord App or Web)*
+
+- Open the Discord application on your desktop or navigate to the Discord web version in your browser and log in to your account.
+- Add a Server:
+	- Look for the `+` icon on the left side of the Discord interface, which is typically found at the bottom of your server list.
+	- Click the `+` icon to start the process of creating a new server.
+    
+![Alt text](/side_projects/assets/create_plus.png) 
+  
+- You will be presented with an option to either join an existing server or create a new one. Select `Create My Own` for creating a new server.
+   
+![Alt text](/side_projects/assets/create_own.png)  
+  
+- Choose the purpose of your server (for me and my friends, for a club or community, etc.). This helps Discord set up default settings that might be relevant for your server's intended use.
+  
+![Alt text](/side_projects/assets/create_for_me.png)  
+  
+Enter a server name. You can also add a server icon by clicking on the circle on the left. The icon can be any image file that represents your server, but it's optional at this stage and can be added or changed later.  
+  
+![Alt text](/side_projects/assets/create_server_name.png)  
+  
+- Region Selection (if prompted):
+	- Discord might automatically select the server region based on your location for optimal performance. However, Discord has been moving towards global servers with automatic region selection, so you might not need to manually choose a region.
+- After setting up your server's name (and icon, if chosen), click `Create` to finalize the creation of your new server.
+
+### Add a Channel
+
+- Navigate to the server you created. It should be on the far left side.
+- To create a new channel, find the `+` icon and click it.
+
+![Alt text](/side_projects/assets/add_channel.png)  
+  
+- A menu will pop up asking for details about the new channel.
+- Name: Enter the name of your channel.
+- Channel Type: Select whether it's a text or voice channel.
+- If applicable, you can also set permissions at this stage, deciding who can access the channel and what they can do within it.
+  
+![Alt text](/side_projects/assets/name_channel.png)  
+
+### Create the Webhook
+
+- Go to the settings of the channel where you want the notifications to be posted.
+
+![Alt text](/side_projects/assets/channel_settings.png)  
+  
+- Find the `Integrations` tab.  
+  
+![Alt text](/side_projects/assets/integrations.png)  
+
+- Then click on `Create Webhook`.
+
+![Alt text](/side_projects/assets/create_webhook.png)  
+
+- Give your webhook a name, and select the channel where messages will be posted. Click "Copy Webhook URL" once you're done and click `Save Shanges` at the bottom. Once saved click the `X ESC` at the top right.
+
+![Alt text](/side_projects/assets/webhook_setup.png)  
+  
+# How Do I Get My Webhook URL???
+> ## *If you've followed the steps without interruption, your webhook URL should be copied to your clipboard. If not, or if it's lost, revisit the steps above to find your webhook and click `Copy Webhook URL` again. This URL is necessary for subsequent script modifications.*
+  
