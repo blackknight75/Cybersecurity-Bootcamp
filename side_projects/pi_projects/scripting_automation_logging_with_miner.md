@@ -372,3 +372,82 @@ Enter a server name. You can also add a server icon by clicking on the circle on
 # How Do I Get My Webhook URL???
 > ## *If you've followed the steps without interruption, your webhook URL should be copied to your clipboard. If not, or if it's lost, revisit the steps above to find your webhook and click `Copy Webhook URL` again. This URL is necessary for subsequent script modifications.*
   
+# Update Your Script to Communicate With Discord
+
+- Log into Your Raspberry Pi or Linux Machine. You can do this directly using its interface or remotely via SSH, depending on your setup.
+
+- Access the terminal on your Raspberry Pi or Linux machine. If you're using a desktop environment, you can usually find it in the menu under Accessories or System Tools.
+Navigate to Your Script's Directory
+
+- Use the cd command to change directories to the location of your mining script. Replace <directory> with the actual path where your script is stored.
+  
+```bash
+cd <directory>
+```
+- Use the nano text editor to open your script for editing. Replace <script_name> with the name of your script file.
+
+```bash
+nano <script_name>.sh
+```
+
+- Add the Notification Code and Webhook URL. In the nano editor, navigate to the then section of the if statement where you want to add the Discord notification functionality.
+
+- Insert the following curl command to send a notification. Make sure to replace <Your Discord Webhook URL> with your actual Discord webhook URL.
+
+```bash
+curl -H "Content-Type: application/json" \
+     -X POST \
+     -d "{\"content\": \"Xmrig is not running. Starting Xmrig\"}" \
+     <Your Discord Webhook URL>
+```
+*Ensure this line is properly placed within the script logic where you want the notification to be triggered.*
+
+- After adding the notification code, save your changes in nano by pressing Ctrl-X, then press Y to confirm the changes, and Enter to save under the current script name.
+
+## Testing
+
+- It's a good idea to test the script to ensure the notification is sent as expected. You can do this by running the script manually from the terminal:
+
+```bash
+./<script_name>.sh
+```
+*Replace <script_name> with the name of your mining script. If everything is set up correctly, you should see the notification in your Discord channel when the script triggers the notification condition.*
+
+If your script doesn't execute because the process it tries to start is already running, follow these steps to resolve the issue:
+
+### Find Your Process ID (PID)
+
+First, you need to identify the Process ID (PID) of the already running process. You can do this by using the pgrep command followed by the name of your process. For example, if your process is named xmrig, you would use:
+```bash
+pgrep xmrig
+```
+
+This command will output the PID(s) of the process(es) matching the name xmrig.
+
+### Terminate the Process
+
+Once you have the PID, you can terminate the process using the kill command followed by the PID you found in the previous step. For example, if the PID was 1234, you would use:
+
+```bash
+kill 1234
+```
+
+If the process doesn't terminate with a standard kill command, you might need to use kill -9 followed by the PID to forcefully terminate the process. However, use this option cautiously as it immediately stops the process without allowing it to clean up resources or save data.
+
+```bash
+kill -9 1234
+```
+
+### Run Your Script Again
+
+With the process now terminated, you can be confident that it is not running. Go ahead and run your script again. Navigate to the directory where your script is located (if you're not already there) and execute it. For example, if your script is named miner_monitor.sh, you would run:
+
+```bash
+./miner_monitor.sh
+```
+
+This command assumes your script has the appropriate execute permissions. If it doesn't, you may first need to grant execute permissions to your script with the chmod command:
+
+```bash
+chmod +x miner_monitor.sh
+```
