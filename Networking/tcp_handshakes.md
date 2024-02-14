@@ -96,9 +96,11 @@ To track a TCP three-way handshake or four-way termination handshake in Wireshar
 
 2. **Find the TCP Stream Index**: Once you've identified a SYN packet that initiates a connection, select it. In the packet details pane, expand the "Transmission Control Protocol" section. Look for the `tcp.stream` value. This value is assigned by Wireshark to uniquely identify all packets belonging to the same TCP connection.
 
-3. **Apply the `tcp.stream` Filter**: Right-click on the packet, navigate to "Follow" and then "TCP Stream". This action automatically applies a filter like `tcp.stream == x`, where `x` is the stream index of the connection. Alternatively, you can manually enter the filter `tcp.stream == x` in the filter bar, replacing `x` with the stream index you found.
+![Stream Index](/Networking/assets/stream_index.png)
 
-4. **Analyze the Three-Way Handshake**: With the filter applied, you should now see only the packets belonging to that TCP connection. Look for the three packets that comprise the three-way handshake:
+4. **Apply the `tcp.stream` Filter**: Right-click on the packet, navigate to "Follow" and then "TCP Stream". This action automatically applies a filter like `tcp.stream == x`, where `x` is the stream index of the connection. Alternatively, you can manually enter the filter `tcp.stream == x` in the filter bar, replacing `x` with the stream index you found.
+
+5. **Analyze the Three-Way Handshake**: With the filter applied, you should now see only the packets belonging to that TCP connection. Look for the three packets that comprise the three-way handshake:
    - SYN packet from the client.
    - SYN-ACK packet from the server.
    - ACK packet from the client.
