@@ -402,6 +402,24 @@ curl -H "Content-Type: application/json" \
 ```
 *Ensure this line is properly placed within the script logic where you want the notification to be triggered.*
 
+### Curl Command Breakdown
+
+The curl command is used to send a POST request to a specified webhook URL, which is a common way to programmatically interact with web services. This particular command is structured to send a notification message, indicating that the Xmrig mining process is not running and will be started. Let's break down this command to understand each of its components in detail:
+
+`curl` is a command-line tool used to transfer data to or from a server. It supports a variety of protocols, including HTTP, HTTPS, FTP, and more. In this context, curl is used to make an HTTP POST request to a Discord webhook URL.  
+
+`-H "Content-Type: application/json"` The -H option adds an HTTP header to the request. In this case, "Content-Type: application/json" specifies that the data being sent in the request is in JSON format. This header is important because it tells the server what kind of data to expect, and since Discord webhooks expect JSON data, this header is required for the request to be processed correctly.  
+
+`-X POST` The -X option specifies the HTTP method to use when communicating with the server. POST is one of the standard HTTP methods used to submit data to be processed to a specified resource. In this scenario, you're using POST to send data to the webhook.  
+
+`-d "{\"content\": \"Xmrig is not running. Starting Xmrig\"}"` The -d option is used to send data with the request. The data is enclosed in quotes and must be a valid JSON string. Here, you're constructing a JSON object with a single property, content, which contains the message you want to send: "Xmrig is not running. Starting Xmrig".
+
+*It's important to note that the double quotes inside the JSON string are escaped with backslashes `\` to ensure the shell treats them as part of the JSON string, rather than interpreting them as shell syntax.*  
+
+`<add your WEBHOOK URL here>` This part of the command should be replaced with the actual webhook URL you're sending the POST request to. Webhooks are user-defined HTTP callbacks, which are triggered by specific events. When you send a POST request to a Discord webhook URL, Discord processes the request and performs an action, such as sending a message to a specified channel on your Discord server.  
+
+In summary, this curl command sends a JSON-formatted HTTP POST request to a Discord webhook URL. The request contains a message indicating that the Xmrig process is not running and will be started. This is a useful way to programmatically send notifications to a Discord channel, allowing for real-time alerts and updates based on specific events or conditions in your scripts or applications.
+
 - After adding the notification code, save your changes in nano by pressing Ctrl-X, then press Y to confirm the changes, and Enter to save under the current script name.
 
 ## Testing
