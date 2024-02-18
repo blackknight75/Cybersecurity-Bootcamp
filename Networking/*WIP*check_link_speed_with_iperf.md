@@ -14,6 +14,7 @@ Here are some key features and aspects of iperf3:
 
 - **JSON Output**: iperf3 can produce test results in a JSON format, which is useful for programmatically parsing and analyzing the data.
 
+
 Step 1: Check if iperf3 is Installed on Both Server and Client Machines
 On Linux (Server): Open a terminal and type `iperf3 -v`. If iperf3 is installed, you'll see the version information. If not, you'll see a command not found message.
 On Windows (Client): Open Command Prompt and type `iperf3 -v`. If iperf3 is installed, it will display the version information. Otherwise, you'll see an error message indicating that iperf3 is not recognized.
