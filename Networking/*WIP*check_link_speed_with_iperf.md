@@ -14,9 +14,13 @@ Here are some key features and aspects of iperf3:
 
 - **JSON Output**: iperf3 can produce test results in a JSON format, which is useful for programmatically parsing and analyzing the data.
 
+# Basic Speed Test
 
-Step 1: Check if iperf3 is Installed on Both Server and Client Machines
-On Linux (Server): Open a terminal and type `iperf3 -v`. If iperf3 is installed, you'll see the version information. If not, you'll see a command not found message.
+This process entails confirming the presence of iperf on both entities and initiating a preliminary speed analysis between a Windows-based client and a Linux-operated server.
+
+### Step 1: Check if iperf3 is Installed on Both Server and Client Machines
+
+**On Linux (Server)**: Open a terminal and type `iperf3 -v`. If iperf3 is installed, you'll see the version information. If not, you'll see a command not found message.
 On Windows (Client): Open Command Prompt and type `iperf3 -v`. If iperf3 is installed, it will display the version information. Otherwise, you'll see an error message indicating that iperf3 is not recognized.
 Step 2: Install iperf3
 Linux Server:
@@ -27,8 +31,18 @@ Windows Client:
 
 Download the compiled iperf3 binary for Windows from the official iPerf website.
 Extract the ZIP file to a folder, e.g., C:\iperf3.
+
+- Open CMD and type:
+
+```cmd
+iperf3 -v
+```
+
 Step 3: Add to PATH If Not Working After Install
 If iperf3 does not run directly in the command line, you may need to add it to your PATH.
+
+#### ADD STEPS TO ADD TO PATH
+#### ADD SCREENSHOT 
 
 Windows Client:
 Right-click the Start button and select Windows Terminal (Admin) or Command Prompt (Admin).
