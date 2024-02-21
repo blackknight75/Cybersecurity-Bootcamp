@@ -21,14 +21,31 @@ Address: 93.184.216.34
 - **Purpose**: Maps a domain to an IPv6 address.
 
 ```bash
-nslookup -type=aaaa ipv6.example.com`
+nslookup -type=aaaa ipv6.example.com
 ```
 
 ### CNAME (Canonical Name) Record
 - **Purpose**: Maps an alias name to a true or canonical domain name.
 
 ```bash
-nslookup -type=cname www.example.com`
+nslookup -type=cname www.example.com
+
+# Output
+Server:		8.8.8.8
+Address:	8.8.8.8#53
+
+Non-authoritative answer:
+*** Can't find www.example.com: No answer
+
+Authoritative answers can be found from:
+example.com
+	origin = ns.icann.org
+	mail addr = noc.dns.icann.org
+	serial = 2024013015
+	refresh = 7200
+	retry = 3600
+	expire = 1209600
+	minimum = 3600
 ```
 
 ### MX (Mail Exchange) Record
