@@ -27,7 +27,7 @@ nslookup -type=aaaa ipv6.example.com
 ### CNAME (Canonical Name) Record
 - **Purpose**: Maps an alias name to a true or canonical domain name.
 
-```bash
+```plaintext
 nslookup -type=cname www.example.com
 
 # Output
@@ -173,7 +173,7 @@ Authoritative answers can be found from:
 ### CAA (Certification Authority Authorization) Record
 - **Purpose**: Specifies which certificate authorities (CAs) are allowed to issue certificates for a domain.
 
-```bash
+```plaintext
 nslookup -type=caa example.com
 
 # Output
