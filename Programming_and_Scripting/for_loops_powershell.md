@@ -46,3 +46,20 @@ In this example, the script checks if the current $letter is "a". If the conditi
   
 `Write-Host` is a PowerShell cmdlet that outputs text to the console (or host window). It's specifically designed to display information directly to the user. When you use 
 `Write-Host`, the output is intended for the human eye, not for piping or redirecting to files or other commands. It's primarily used for writing informational messages, debugging output, or any other text that should be seen by the user but not processed further by the script.
+
+### Incorporating Complex Logic
+Conditionals can be more complex and include logical operators (-and, -or, -not), allowing for more nuanced checks:
+
+```powershell
+$strings = "a", "b", "c", "d"
+foreach ($letter in $strings) {
+    if ($letter -eq "a" -or $letter -eq "b") {
+        Write-Host "$letter is in the first half of the alphabet"
+    } elseif ($letter -eq "c" -or $letter -eq "d") {
+        Write-Host "$letter is in the second half of the alphabet"
+    } else {
+        Write-Host "$letter is not in the considered range"
+    }
+}
+```
+In this expanded example, each letter is checked against multiple conditions to determine its grouping in the alphabet. This approach demonstrates how conditional logic can be used to differentiate actions based on complex criteria.
