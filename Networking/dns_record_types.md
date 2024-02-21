@@ -7,6 +7,14 @@ DNS (Domain Name System) records are used to control how your domain is resolved
 
 ```bash
 nslookup example.com
+
+# Output
+Server:		8.8.8.8
+Address:	8.8.8.8#53
+
+Non-authoritative answer:
+Name:	example.com
+Address: 93.184.216.34
 ```
 
 ### AAAA (IPv6 Address) Record
