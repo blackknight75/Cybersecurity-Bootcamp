@@ -14,3 +14,35 @@ foreach ($letter in $strings) {
 }
 ```
 During each iteration, `$letter` assumes the value of the current element within the collection, sequentially adopting the values "a", "b", and "c". This mechanism underscores the iterative nature of for loops, enabling targeted operations on individual elements within a collection.
+
+## Adding Conditionals
+
+Adding conditionals to a foreach loop allows you to execute specific operations based on certain criteria or conditions for each item in the collection. In PowerShell, this is commonly done using if statements within the loop to check each element against a condition and execute corresponding actions.  
+  
+Given the code block above:
+
+```powershell
+$strings = "a", "b", "c"
+foreach ($letter in $strings) {
+    # Execute an operation on $letter
+}
+```
+Let's say you want to perform a different operation depending on whether the letter is "a", "b", or "c". You can integrate if statements into the loop to accomplish this.
+
+### Adding a Simple Conditional
+Here's an example of adding a simple conditional to perform a check on each $letter:
+
+```powershell
+$strings = "a", "b", "c"
+foreach ($letter in $strings) {
+    if ($letter -eq "a") {
+        Write-Host "Letter is a"
+    } else {
+        Write-Host "Letter is not a"
+    }
+}
+```
+In this example, the script checks if the current $letter is "a". If the condition is true ($letter -eq "a"), it executes the first block (Write-Host "Letter is a"); otherwise, it executes the else block.  
+  
+`Write-Host` is a PowerShell cmdlet that outputs text to the console (or host window). It's specifically designed to display information directly to the user. When you use 
+`Write-Host`, the output is intended for the human eye, not for piping or redirecting to files or other commands. It's primarily used for writing informational messages, debugging output, or any other text that should be seen by the user but not processed further by the script.
