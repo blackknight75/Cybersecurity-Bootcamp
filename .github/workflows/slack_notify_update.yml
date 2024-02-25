@@ -12,5 +12,4 @@ jobs:
       - name: Notify Slack
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        run: |
-          curl -X POST -H 'Content-type: application/json' --data '{"text":"A new push to the main branch has occurred. Check out the GitHub repository for more details."}' $SLACK_WEBHOOK_URL
+        run: echo "The workflow is triggered!"
