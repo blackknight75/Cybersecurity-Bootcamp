@@ -1,0 +1,16 @@
+name: Notify Slack on Update
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  slackNotification:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify Slack
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.https://hooks.slack.com/services/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 }}
+        run: |
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"A new push to the main branch has occurred. Check out the GitHub repository for more details."}' $SLACK_WEBHOOK_URL
