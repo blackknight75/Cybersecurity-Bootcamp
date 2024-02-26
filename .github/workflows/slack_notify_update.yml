@@ -16,12 +16,17 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         run: |
-          FILES_CHANGED=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }})
+          # Fetch the commit history to ensure differences can be calculated
+          git fetch --depth=2 origin ${{ github.ref }}
+          
+          # List changes, considering the last 2 commits. Adjust if you need a broader history.
+          FILES_CHANGED=$(git diff --name-only HEAD~1 HEAD)
           if [ -z "$FILES_CHANGED" ]; then
             FILES_MSG="No files changed."
           else
             FILES_MSG="Files changed: $FILES_CHANGED"
           fi
           
-          PAYLOAD=$(echo "{\"text\": \"A new push to the main branch has occurred. ${FILES_MSG} Check out the GitHub repository for more details.\"}")
+          PAYLOAD="{\"text\": \"A new push to the main branch has occurred. ${FILES_MSG} Check out the GitHub repository for more details.\"}"
+          echo $PAYLOAD
           curl -X POST -H 'Content-type: application/json' --data "$PAYLOAD" $SLACK_WEBHOOK_URL
