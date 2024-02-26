@@ -13,20 +13,18 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Get Changed Files
-        id: get_files
+        id: files
         run: |
-          echo "::set-output name=files_changed::$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }})"
-        shell: bash
+          echo "FILES_CHANGED=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }})" >> $GITHUB_ENV
 
       - name: Notify Slack
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-          FILES_CHANGED: ${{ steps.get_files.outputs.files_changed }}
         run: |
-          if [ -z "${FILES_CHANGED}" ]; then
+          if [ -z "$FILES_CHANGED" ]; then
             FILES_MSG="No files changed."
           else
-            FILES_MSG="Files changed: ${FILES_CHANGED}"
+            FILES_MSG="Files changed: $FILES_CHANGED"
           fi
           PAYLOAD="{
             \"text\": \"A new push to the main branch has occurred. ${FILES_MSG} Check out the GitHub repository for more details.\"
