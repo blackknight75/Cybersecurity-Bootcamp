@@ -16,16 +16,29 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         run: |
-          FILES_CHANGED=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }})
+          # Fetch the commit history to ensure differences can be calculated
+          git fetch --depth=2 origin ${{ github.ref }}
+          
+          # List changes, considering the last 2 commits. Adjust if you need a broader history.
+          FILES_CHANGED=$(git diff --name-only HEAD~1 HEAD)
           if [ -z "$FILES_CHANGED" ]; then
             FILES_MSG="No files changed."
           else
-            FILES_MSG="Files changed:\n\`\`\`$FILES_CHANGED\`\`\`"
+            FILES_MSG="\`\`\`${FILES_CHANGED}\`\`\`" # Markdown code block to preformat the file list
           fi
           
+          # Constructing the payload using Block Kit for structured and stylized output
           PAYLOAD=$(cat <<EOF
           {
             "blocks": [
+              {
+                "type": "header",
+                "text": {
+                  "type": "plain_text",
+                  "text": "Update Notification",
+                  "emoji": true
+                }
+              },
               {
                 "type": "section",
                 "text": {
@@ -37,11 +50,12 @@ jobs:
                 "type": "section",
                 "text": {
                   "type": "mrkdwn",
-                  "text": "$FILES_MSG"
+                  "text": "*Files Changed:*\\n${FILES_MSG}"
                 }
               }
             ]
           }
 EOF
           )
+          echo $PAYLOAD
           curl -X POST -H 'Content-type: application/json' --data "$PAYLOAD" $SLACK_WEBHOOK_URL
