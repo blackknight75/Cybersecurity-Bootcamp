@@ -26,11 +26,7 @@ jobs:
           else
             FILES_MSG="Files changed: $FILES_CHANGED"
           fi
-          PAYLOAD=$(cat <<EOF
-          {
-            "text": "A new push to the main branch has occurred. $FILES_MSG Check out the GitHub repository for more details."
-          }
-EOF
-          )
+          PAYLOAD="{
+            \"text\": \"A new push to the main branch has occurred. ${FILES_MSG} Check out the GitHub repository for more details.\"
+          }"
           curl -X POST -H 'Content-type: application/json' --data "$PAYLOAD" $SLACK_WEBHOOK_URL
-
