@@ -1,4 +1,4 @@
-name: Notify Slack on Update with File Details
+name: Notify Slack on Update with File Details and Link
 
 on:
   push:
@@ -15,17 +15,20 @@ jobs:
       - name: Notify Slack
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          GITHUB_REPOSITORY_URL: https://github.com/${{ github.repository }}
         run: |
           git fetch --depth=2 origin ${{ github.ref }}
           
-          FILES_CHANGED=$(git diff --name-only HEAD~1 HEAD)
-          if [ -z "$FILES_CHANGED" ]; then
+          FIRST_FILE_CHANGED=$(git diff --name-only HEAD~1 HEAD | head -n 1)
+          if [ -z "$FIRST_FILE_CHANGED" ]; then
             FILES_MSG="No files changed."
+            FIRST_FILE_URL=""
           else
-            FILES_MSG="Files changed: \`\`\`$FILES_CHANGED\`\`\`"
+            FILES_MSG="Files changed: \`\`\`$(git diff --name-only HEAD~1 HEAD)\`\`\`"
+            FIRST_FILE_URL="$GITHUB_REPOSITORY_URL/blob/${{ github.sha }}/$FIRST_FILE_CHANGED"
+            FILES_MSG="$FILES_MSG\n\nView changes: <$FIRST_FILE_URL|View Change>"
           fi
           
-          # Using echo and jq to properly format and escape JSON
-          PAYLOAD=$(echo -n "{\"blocks\": [{\"type\": \"header\", \"text\": {\"type\": \"plain_text\", \"text\": \"Update Notification\", \"emoji\": true}}, {\"type\": \"section\", \"text\": {\"type\": \"mrkdwn\", \"text\": \"A new push to the *main* branch has occurred. Check out the GitHub repository for more details.\"}}, {\"type\": \"section\", \"text\": {\"type\": \"mrkdwn\", \"text\": \"*Files Changed:*\\n$FILES_MSG\"}}]}" | jq -c .)
+          PAYLOAD=$(echo -n "{\"blocks\": [{\"type\": \"header\", \"text\": {\"type\": \"plain_text\", \"text\": \"Update Notification\", \"emoji\": true}}, {\"type\": \"section\", \"text\": {\"type\": \"mrkdwn\", \"text\": \"A new push to the *main* branch has occurred. $FILES_MSG Check out the GitHub repository for more details.\"}}]}")
           
           curl -X POST -H 'Content-type: application/json' --data "$PAYLOAD" $SLACK_WEBHOOK_URL
