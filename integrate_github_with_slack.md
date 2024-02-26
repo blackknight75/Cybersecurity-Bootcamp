@@ -19,8 +19,4 @@
 - Active: Ensure the webhook is set to active.
 - Save: Click "Add webhook".
 
-
-test test test test TEST
-Test test
-test test
-Test test TEST
+Apple
