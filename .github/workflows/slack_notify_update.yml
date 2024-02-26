@@ -23,12 +23,38 @@ jobs:
           if [ -z "$FIRST_FILE_CHANGED" ]; then
             FILES_MSG="No files changed."
             FIRST_FILE_URL=""
+            VIEW_CHANGES_SECTION=""
           else
-            FILES_MSG="Files changed: \`\`\`$(git diff --name-only HEAD~1 HEAD)\`\`\`"
+            FILES_CHANGED_LIST=$(git diff --name-only HEAD~1 HEAD | awk '{print "- " $0}')
             FIRST_FILE_URL="$GITHUB_REPOSITORY_URL/blob/${{ github.sha }}/$FIRST_FILE_CHANGED"
-            FILES_MSG="$FILES_MSG\n\nView changes: <$FIRST_FILE_URL|View Change>"
+            FILES_MSG="*Files changed:*\n\`\`\`${FILES_CHANGED_LIST}\`\`\`"
+            VIEW_CHANGES_SECTION=", {\"type\": \"section\", \"text\": {\"type\": \"mrkdwn\", \"text\": \"<${FIRST_FILE_URL}|View changes>\"}}"
           fi
           
-          PAYLOAD=$(echo -n "{\"blocks\": [{\"type\": \"header\", \"text\": {\"type\": \"plain_text\", \"text\": \"Update Notification\", \"emoji\": true}}, {\"type\": \"section\", \"text\": {\"type\": \"mrkdwn\", \"text\": \"A new push to the *main* branch has occurred. $FILES_MSG Check out the GitHub repository for more details.\"}}]}")
+          COMMIT_MSG=$(git log -1 --pretty=%B)
+          COMMITTER_NAME=$(git log -1 --pretty=%cn)
+          COMMIT_DATE=$(git log -1 --pretty=%cd)
+          
+          PAYLOAD=$(echo -n "{
+            \"blocks\": [
+              {
+                \"type\": \"header\",
+                \"text\": {
+                  \"type\": \"plain_text\",
+                  \"text\": \"📢 New Update in ${GITHUB_REPOSITORY}\",
+                  \"emoji\": true
+                }
+              },
+              {
+                \"type\": \"section\",
+                \"text\": {
+                  \"type\": \"mrkdwn\",
+                  \"text\": \"A new push to the *main* branch by *${COMMITTER_NAME}* has occurred.\n\n*Commit Message:* ${COMMIT_MSG}\n*Date:* ${COMMIT_DATE}\n\n${FILES_MSG}\"
+                }
+              }
+              ${VIEW_CHANGES_SECTION}
+            ]
+          }" | jq -c .)
           
           curl -X POST -H 'Content-type: application/json' --data "$PAYLOAD" $SLACK_WEBHOOK_URL
+
