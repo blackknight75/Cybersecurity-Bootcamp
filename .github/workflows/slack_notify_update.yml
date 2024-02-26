@@ -1,4 +1,4 @@
-name: Notify Slack on Update
+name: Notify Slack on Update with File Details
 
 on:
   push:
@@ -6,12 +6,31 @@ on:
       - main
 
 jobs:
-  notifySlack:
+  slackNotification:
     runs-on: ubuntu-latest
     steps:
-      - name: Send notification to Slack
-        uses: slackapi/slack-github-action@v1.24.0
-        with:
-          payload: '{"text":"Git push done in the repo, CyberSec"}'
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Get Changed Files
+        id: files
+        run: |
+          echo "FILES_CHANGED=$(git diff --name-only HEAD^ HEAD)" >> $GITHUB_ENV
+
+      - name: Notify Slack
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          if [ -z "$FILES_CHANGED" ]; then
+            FILES_MSG="No files changed."
+          else
+            FILES_MSG="Files changed: $FILES_CHANGED"
+          fi
+          PAYLOAD=$(cat <<EOF
+          {
+            "text": "A new push to the main branch has occurred. $FILES_MSG Check out the GitHub repository for more details."
+          }
+EOF
+          )
+          curl -X POST -H 'Content-type: application/json' --data "$PAYLOAD" $SLACK_WEBHOOK_URL
+
