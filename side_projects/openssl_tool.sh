@@ -67,15 +67,33 @@ process_operation() {
             fi
             ;;
         decrypt)
-            # Placeholder for decrypt functionality
-            echo "Decrypt operation not implemented yet."
-            ;;
-        *)
-            echo "Invalid operation. Use 'generate', 'encrypt', or 'decrypt'."
-            exit 1
-            ;;
-    esac
-}
+            if [[ $# -ne 3 ]]; then
+                echo "Usage: $0 decrypt <filename> <key-iv-file>"
+                exit 1
+            fi
+        
+            local filename="$2"
+            local key_iv_file="$3"
+        
+            # Extract key and IV from the key-iv file
+            local key=$(grep key $key_iv_file | awk -F "=" '{print $2}')
+            local iv=$(grep iv $key_iv_file | awk -F "=" '{print $2}')
+        
+            # Perform decryption
+            openssl enc -pbkdf2 -nosalt -aes-256-cbc -in "$filename" -out "${filename.enc}" -d -base64 -K "$key" -iv "$iv"
+        
+            if [[ $? -eq 0 ]]; then
+                echo "File decrypted successfully: ${filename.enc}"
+            else
+                echo "Failed to decrypt file."
+                exit 1
+            fi            ;;
+                *)
+                    echo "Invalid operation. Use 'generate', 'encrypt', or 'decrypt'."
+                    exit 1
+                    ;;
+            esac
+        }
 
 # Main script starts here
 if [[ $# -lt 2 ]]; then
