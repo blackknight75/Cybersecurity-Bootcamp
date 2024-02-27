@@ -18,6 +18,14 @@ install_openssl() {
     fi
 }
 
+# Check if OpenSSL is installed
+which openssl >/dev/null
+if [[ $? -eq 0 ]]; then
+    echo "OpenSSL is installed."
+else
+    install_openssl
+fi
+
 # Function to generate key and IV using OpenSSL
 generate_key_iv() {
     local password=$1
@@ -102,12 +110,4 @@ if [[ $# -lt 2 ]]; then
     exit 1
 else
     process_operation $@
-fi
-
-# Check if OpenSSL is installed
-which openssl >/dev/null
-if [[ $? -eq 0 ]]; then
-    echo "OpenSSL is installed."
-else
-    install_openssl
 fi
