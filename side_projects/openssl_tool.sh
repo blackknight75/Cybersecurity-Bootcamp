@@ -44,8 +44,27 @@ process_operation() {
             fi
             ;;
         encrypt)
-            # Placeholder for encrypt functionality
-            echo "Encrypt operation not implemented yet."
+            local input_filename="$2"
+            local key_iv_file="$3"
+        
+            # Extract key and IV from the file using awk
+            local key=$(grep key $key_iv_file | awk -F "=" '{print $2}')
+            local iv=$(grep iv $key_iv_file | awk -F "=" '{print $2}')
+        
+            # Check if both key and iv have been extracted
+            if [[ -z "$key" || -z "$iv" ]]; then
+                echo "Could not extract key and IV from file."
+                exit 1
+            fi
+        
+            # Perform the encryption
+            openssl enc -pbkdf2 -nosalt -aes-256-cbc -in "$input_filename" -out "${input_filename}.enc" -base64 -K "$key" -iv "$iv"
+            if [[ $? -eq 0 ]]; then
+                echo "File encrypted successfully: ${input_filename}.enc"
+            else
+                echo "Encryption failed."
+                exit 1
+            fi
             ;;
         decrypt)
             # Placeholder for decrypt functionality
