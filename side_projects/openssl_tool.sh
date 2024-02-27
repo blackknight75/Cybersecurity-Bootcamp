@@ -88,10 +88,10 @@ process_operation() {
             local iv=$(grep iv $key_iv_file | awk -F "=" '{print $2}')
         
             # Perform decryption
-            openssl enc -pbkdf2 -nosalt -aes-256-cbc -in "$filename" -out "${filename.enc}" -d -base64 -K "$key" -iv "$iv"
+            openssl enc -pbkdf2 -nosalt -aes-256-cbc -in "$filename" -d -base64 -K "$key" -iv "$iv"
         
             if [[ $? -eq 0 ]]; then
-                echo "File decrypted successfully: ${filename.enc}"
+                echo "File decrypted successfully: ${filename}"
             else
                 echo "Failed to decrypt file."
                 exit 1
