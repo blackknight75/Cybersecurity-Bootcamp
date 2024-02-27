@@ -7,7 +7,7 @@ install_openssl() {
         echo "Installing OpenSSL now..."
         sudo apt update && sudo apt install openssl -y
         if [[ $? -eq 0 ]]; then
-            echo "OpenSSL installed successfully."
+        
         else
             echo "Failed to install OpenSSL."
             exit 1
