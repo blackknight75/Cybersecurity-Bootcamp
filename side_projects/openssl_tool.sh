@@ -105,9 +105,22 @@ process_operation() {
 
 # Main script starts here
 if [[ $# -lt 2 ]]; then
-    echo "Usage: $0 <operation> [operation-specific arguments]"
-    echo "Operation must be one of: generate, encrypt, decrypt"
+    echo -e "\e[1;33mUsage:\e[0m\e[1;34m <operation> [operation-specific arguments]\e[0m\n"
+
+    echo -e "\e[1;32mAvailable Operations:\e[0m"
+    echo -e "\e[1;35m1. Generate Key & IV\e[0m"
+    echo -e "\e[0;36m   Description:\e[0m Create a new encryption key and initialization vector (IV)."
+    echo -e "\e[1;34m   Command:\e[0m\t./openssl-tool.sh generate <password> <output_file_name>\n"
+    
+    echo -e "\e[1;35m2. Encrypt\e[0m"
+    echo -e "\e[0;36m   Description:\e[0m Encrypt a file using a specified key and IV."
+    echo -e "\e[1;34m   Command:\e[0m\t./openssl-tool.sh encrypt <input_filename.txt> <key_iv_file>\n"
+    
+    echo -e "\e[1;35m3. Decrypt\e[0m"
+    echo -e "\e[0;36m   Description:\e[0m Decrypt a file using a specified key and IV."
+    echo -e "\e[1;34m   Command:\e[0m\t./openssl-tool.sh decrypt <input_filename.txt.enc> <key_iv_file>\n"
+
     exit 1
 else
-    process_operation $@
+    process_operation "$@"
 fi
