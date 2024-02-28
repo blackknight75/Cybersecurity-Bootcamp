@@ -17,6 +17,24 @@ The Research & Development wing, in anticipation of such encrypted challenges, h
 
 This message will self-destruct in five seconds. Good luck, Agent. The fate of the mission rests in your hands. :dark_sunglasses::briefcase::unlock:
 
+---
+#### Intercepted Message
+> 2kXjwg1f2pFglEgiRTtonnbd3oSzgmC/7VOXYsTK7cN8YVKGVo6hKwx0ORI09odW
+/yRYfyKm1jeBBDnxifWz8iCwJoVlmAylgx2aKLn5iSZ0acwvxWWaACvpXdvJ8ge+
+ThDjxkTa9YB0ctVdvy1j/n2Mm9DXwi6rhPrItRaVk6bBpU+LkGOEZRoXq5czW94q
+4Wg7Tc670cHdlveW/jBCjas9VfKq4diazbZuEoL7zlmvqLUMd52HiIyw1KTqTSDF
+n6j4eYAUSzF0DP9iNuEV5xjqSnhtbUb6joj8U19JfG7UN0owgMjIbk9vZmu7QVeM
+ocq/uAcMkXBKfQ5g1XeuNZ6ML1gjBLoGfQctHfUsBV/7m1JnhMGtQaXqp0kEqDc6
+Pjv9iQZBcPhOyLioWHIY7nDvpyTh3ssFyL/OUUuAv596c+m9eKR7N5aS3TM9aoOK
+iOGCR0zDWfr6E1/REELHGJZ0NFp/2bawY9bMu3UsRXaXZ505FH4ZE3PqYMlXlBwJ
+zDVjLCBjO5Fha5xyWDTjODXsAsUdhzLhVAhWyePDx0D6nf3+rSbpzA9/b25Gd1W2
+ys3wemhb9TMKcERKw0Z0hsVC9baWllZzkCIN3DZD3za9zedXe7TfeT07tjGNxBan
+y0FgfGkWQB6uaAOC/nEZcA0bi1wzYBNlvAOE14tCmAUpNL68lc399ceGnoCD+vCQ
++M+Xh9Q1Zk2CVIhwQz9LM4Dmnd1/JVqfQNVpNHxDQ8CqA1UulDywI/7Sw1vhdYrn
+Dio43sdWoMoYKV+vbyu4S94Z3t9k5BfdoFrAeoaRILEtD06gKRpiV9eiHGh+VlGH
+---
+
+#### Mysterious Strings
 `
 69 76 20 3d 36 42 37 46 30 43 34 30 36 32 39 37 46 30 44
 `  
@@ -29,6 +47,12 @@ This message will self-destruct in five seconds. Good luck, Agent. The fate of t
 00111001 00110000 01000101 00110011 01000010 01000100 00110110 00110101 01000001 01000100 00110001 01000110 01000010 00111001 00110100 01000010 01000001
 `  
 
+---
 
-**R&D Tool**  
-[https://github.com/blackknight75/Cybersecurity-Bootcamp/blob/main/Cryptography/openssl_tool.sh](https://github.com/blackknight75/Cybersecurity-Bootcamp/blob/main/Cryptography/openssl_tool.sh)]
+#### OpenSSL Tool 
+[https://github.com/blackknight75/Cybersecurity-Bootcamp/blob/main/Cryptography/openssl_tool.sh](https://github.com/blackknight75/Cybersecurity-Bootcamp/blob/main/Cryptography/openssl_tool.sh)
+
+**Manual Decrypt**
+```bash
+openssl enc -pbkdf2 -nosalt -aes-256-cbc -in <file-to-decrypt.txt> -d -base64 -K <key> -iv <iv>
+```
