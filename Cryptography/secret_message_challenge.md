@@ -31,4 +31,4 @@ This message will self-destruct in five seconds. Good luck, Agent. The fate of t
 
 
 **R&D Tool**  
-[https://github.com/blackknight75/Cybersecurity-Bootcamp/blob/main/side_projects/openssl_tool.sh](https://github.com/blackknight75/Cybersecurity-Bootcamp/blob/main/side_projects/openssl_tool.sh)
+[https://github.com/blackknight75/Cybersecurity-Bootcamp/blob/main/Cryptography/openssl_tool.sh](https://github.com/blackknight75/Cybersecurity-Bootcamp/blob/main/Cryptography/openssl_tool.sh)]
