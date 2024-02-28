@@ -1,4 +1,5 @@
 #!/bin/bash
+# OpenSSL Tool v1.1
 
 # Function to install OpenSSL
 install_openssl() {
