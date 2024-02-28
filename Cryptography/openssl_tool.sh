@@ -7,7 +7,7 @@ install_openssl() {
         echo "Installing OpenSSL now..."
         sudo apt update && sudo apt install openssl -y
         if [[ $? -eq 0 ]]; then
-        
+            echo "OpenSSL Successfully Installed"
         else
             echo "Failed to install OpenSSL."
             exit 1
@@ -21,7 +21,7 @@ install_openssl() {
 # Check if OpenSSL is installed
 which openssl >/dev/null
 if [[ $? -eq 0 ]]; then
-    echo "OpenSSL is installed."
+    echo "*"
 else
     install_openssl
 fi
@@ -44,12 +44,7 @@ process_operation() {
     local operation=$1
     case $operation in
         generate)
-            if [[ $# -ne 3 ]]; then
-                echo "Usage for generate: $0 generate <password> <output_filename>"
-                exit 1
-            else
                 generate_key_iv $2 $3
-            fi
             ;;
         encrypt)
             local input_filename="$2"
@@ -75,11 +70,6 @@ process_operation() {
             fi
             ;;
         decrypt)
-            if [[ $# -ne 3 ]]; then
-                echo "Usage: $0 decrypt <filename> <key-iv-file>"
-                exit 1
-            fi
-        
             local filename="$2"
             local key_iv_file="$3"
         
@@ -88,8 +78,10 @@ process_operation() {
             local iv=$(grep iv $key_iv_file | awk -F "=" '{print $2}')
         
             # Perform decryption
-            openssl enc -pbkdf2 -nosalt -aes-256-cbc -in "$filename" -d -base64 -K "$key" -iv "$iv"
-        
+            printf "\e[1;34mMessage:\e[0m\e[1;32mDECRYPTED\e[0m\n"
+            message=$(openssl enc -pbkdf2 -nosalt -aes-256-cbc -in "$filename" -d -base64 -K "$key" -iv "$iv")
+            printf "\e[1;36m%s\e[0m\n" "$message"
+            
             if [[ $? -eq 0 ]]; then
                 echo "File decrypted successfully: ${filename}"
             else
@@ -104,21 +96,21 @@ process_operation() {
         }
 
 # Main script starts here
-if [[ $# -lt 2 ]]; then
-    echo -e "\e[1;33mUsage:\e[0m\e[1;34m <operation> [operation-specific arguments]\e[0m\n"
+if [[ $# -lt 3 ]]; then
+    printf "\e[1;33mUsage:\e[0m\e[1;34m <operation> [operation-specific arguments]\e[0m\n"
 
-    echo -e "\e[1;32mAvailable Operations:\e[0m"
-    echo -e "\e[1;35m1. Generate Key & IV\e[0m"
-    echo -e "\e[0;36m   Description:\e[0m Create a new encryption key and initialization vector (IV)."
-    echo -e "\e[1;34m   Command:\e[0m\t./openssl-tool.sh generate <password> <output_file_name>\n"
-    
-    echo -e "\e[1;35m2. Encrypt\e[0m"
-    echo -e "\e[0;36m   Description:\e[0m Encrypt a file using a specified key and IV."
-    echo -e "\e[1;34m   Command:\e[0m\t./openssl-tool.sh encrypt <input_filename.txt> <key_iv_file>\n"
-    
-    echo -e "\e[1;35m3. Decrypt\e[0m"
-    echo -e "\e[0;36m   Description:\e[0m Decrypt a file using a specified key and IV."
-    echo -e "\e[1;34m   Command:\e[0m\t./openssl-tool.sh decrypt <input_filename.txt.enc> <key_iv_file>\n"
+    printf "\e[1;32mAvailable Operations:\e[0m\n"
+    printf "\e[1;35m1. Generate Key & IV\e[0m\n"
+    printf "\e[0;36m   Description:\e[0m Create a new encryption key and initialization vector (IV).\n"
+    printf "\e[1;34m   Command:\e[0m\t./openssl-tool.sh generate <password> <output_file_name>\n\n"
+
+    printf "\e[1;35m2. Encrypt\e[0m\n"
+    printf "\e[0;36m   Description:\e[0m Encrypt a file using a specified key and IV.\n"
+    printf "\e[1;34m   Command:\e[0m\t./openssl-tool.sh encrypt <input_filename.txt> <key_iv_file>\n\n"
+
+    printf "\e[1;35m3. Decrypt\e[0m\n"
+    printf "\e[0;36m   Description:\e[0m Decrypt a file using a specified key and IV.\n"
+    printf "\e[1;34m   Command:\e[0m\t./openssl-tool.sh decrypt <input_filename.txt.enc> <key_iv_file>\n"
 
     exit 1
 else
