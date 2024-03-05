@@ -2,8 +2,6 @@
 
 Enabling Multi-Factor Authentication (MFA) on SSH involves configuring the SSH server to prompt users for an additional factor of authentication besides their password. This can be achieved using tools like Google Authenticator or LastPass Authenticator. Below are the steps to enable MFA on SSH with both Google Authenticator and LastPass Authenticator. The steps provided below should be executed on the target machine where you want to enable MFA for SSH.
 
-Here's a brief overview of the steps involved:
-
 1. **Install the Authenticator App on Your Mobile Device:**
    - Install Google Authenticator or LastPass Authenticator on your mobile device.
 
