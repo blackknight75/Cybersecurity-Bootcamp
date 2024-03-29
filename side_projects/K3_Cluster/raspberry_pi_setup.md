@@ -10,3 +10,5 @@
 - sudo update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy
 - sudo reboot
 - link to master node  
+
+slack test
