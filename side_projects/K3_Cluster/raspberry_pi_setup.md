@@ -11,4 +11,3 @@
 - sudo reboot
 - link to master node  
 
-slack test
