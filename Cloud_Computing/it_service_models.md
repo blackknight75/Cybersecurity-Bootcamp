@@ -28,9 +28,9 @@ IT service models are frameworks that define how technology services are deliver
 **Definition**: A cloud computing model offering virtualized computing resources over the internet, including virtual server space, network connections, and bandwidth.
 
 #### Example:
-1. Amazon Web Services (AWS) EC2: Offers scalable compute capacity in the cloud, allowing users to run applications on Amazon's computing environment.
-2. Microsoft Azure Virtual Machines: Provides on-demand, scalable computing resources with Microsoft Azure, supporting various operating systems.
-3. Google Cloud Compute Engine: Delivers high-performance virtual machines (VMs) in the cloud, with options for custom VM shapes and sizes.
+1. **Amazon Web Services (AWS) EC2:** Offers scalable compute capacity in the cloud, allowing users to run applications on Amazon's computing environment.
+2. **Microsoft Azure Virtual Machines:** Provides on-demand, scalable computing resources with Microsoft Azure, supporting various operating systems.
+3. **Google Cloud Compute Engine:** Delivers high-performance virtual machines (VMs) in the cloud, with options for custom VM shapes and sizes.
 
 #### Pros
 
@@ -49,9 +49,9 @@ IT service models are frameworks that define how technology services are deliver
 **Definition**: Provides a platform allowing customers to develop, run, and manage applications without the complexity of maintaining the infrastructure typically required.
 
 #### Examples:
-1. Heroku: A platform that enables developers to build, run, and operate applications entirely in the cloud, supporting multiple programming languages.
-2. Microsoft Azure App Service: Provides a platform for building, deploying, and scaling web apps and APIs, with support for .NET, Node.js, Java, PHP, Python, and Ruby.
-3. Google App Engine: Allows developers to build highly scalable applications on a fully managed serverless platform.
+1. **Heroku:** A platform that enables developers to build, run, and operate applications entirely in the cloud, supporting multiple programming languages.
+2. **Microsoft Azure App Service:** Provides a platform for building, deploying, and scaling web apps and APIs, with support for .NET, Node.js, Java, PHP, Python, and Ruby.
+3. **Google App Engine:** Allows developers to build highly scalable applications on a fully managed serverless platform.
 
 #### Pros
 
@@ -70,11 +70,11 @@ IT service models are frameworks that define how technology services are deliver
 **Definition**: A software distribution model where applications are hosted by a third-party provider and made available over the Internet, typically on a subscription basis.
 
 #### Example:
-1. Salesforce: A comprehensive CRM platform that provides a suite of tools for sales, customer service, marketing, and more.
-2. Microsoft 365: Offers cloud-based productivity tools for businesses, including email, collaboration, and various Office applications.
-3. Google Workspace: A suite of cloud computing, productivity, and collaboration tools, software, and products developed by Google.
-4. Adobe Creative Cloud: Provides a collection of software for graphic design, video editing, web development, photography, and cloud services.
-5. Slack: A messaging app for businesses that facilitates team communication and collaboration, integrating with a wide range of other services.
+1. **Salesforce:** A comprehensive CRM platform that provides a suite of tools for sales, customer service, marketing, and more.
+2. **Microsoft 365:** Offers cloud-based productivity tools for businesses, including email, collaboration, and various Office applications.
+3. **Google Workspace:** A suite of cloud computing, productivity, and collaboration tools, software, and products developed by Google.
+4. **Adobe Creative Cloud:** Provides a collection of software for graphic design, video editing, web development, photography, and cloud services.
+5. **Slack:** A messaging app for businesses that facilitates team communication and collaboration, integrating with a wide range of other services.
 
 
 #### Pros
